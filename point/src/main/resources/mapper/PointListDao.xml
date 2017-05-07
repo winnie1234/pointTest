@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.point.dao.PointListDao">
+
+	<select id = "selectSeqCountByUserIdCorpId" resultType = "int">
+		select IFNULL(max(seq),0) from pointlist 
+		where
+		userId = #{userId} AND
+		corpId = #{corpId}
+	</select>
+	
+	<insert id = "insert">
+		insert into pointlist 
+		(userId,corpId,seq, action,status,point,description,dealDate,dealId,dealType,pointActionDate)
+		VALUES
+		(#{userId},#{corpId},#{seq}, #{action},#{status},#{point},#{description},#{dealDate},#{dealId},#{dealType},#{pointActionDate})
+	</insert>
+	
+	<select id = "selectByUserId">
+		select * from pointlist 
+		where 
+		userId = #{userId}
+	</select>
+	
+	<select id = "selectAll">
+		select * from pointlist
+	</select>
+	
+	
+</mapper>

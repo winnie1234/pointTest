@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.point.dao.PointDao">
+
+	<insert id = "insert">
+		insert into point 
+		(userid,corpId, createDate,updateDate,validPoint,expiredPoint,freezingPoint) 
+		VALUES (#{userId},#{corpId},now(),now(),#{validPoint},#{expiredPoint},#{freezingPoint})
+	</insert>
+	
+	<select id = "queryByUserIdCorpId" resultType = "Point">
+		select * from point
+		where userid = #{userId} AND corpId = #{corpId}
+	</select>
+	
+	<update id = "updateByUserIdCorpId">
+		update point set 
+		validPoint = #{validPoint},
+		expiredPoint = #{expiredPoint},
+		freezingPoint = #{freezingPoint}
+		where userId = #{userId} AND corpId = #{corpId}
+	</update>	
+	
+	<delete id = "deleteByUserId">
+		delete from point where userId = #{userId}
+	</delete>
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.point.dao.UserDao">
+	<insert id = "insertUser">
+		INSERT INTO user (id,name,age,corpId) 
+		VALUES (#{id},#{name},#{age},#{corpId})
+	</insert>
+	
+	<select id = "queryByIdByCorpId" resultType = "user">
+		SELECT * FROM user WHERE id=#{id} AND corpId=#{corpId}
+	</select>
+	
+	<select id = "queryAll" resultType = "User">
+		SELECT * FROM user
+	</select>
+	
+	<delete id = "delete">
+		DELETE FROM user WHERE id=#{id}
+	</delete>
+	
+	<update id = "update">
+		UPDATE user SET age = #{age} ,name =#{name} WHERE id=#{id}
+	</update>
+</mapper>
